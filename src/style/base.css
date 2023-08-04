@@ -1,0 +1,3 @@
+main > *, main > astro-island > * {
+  grid-column: 2 / 3;
+}

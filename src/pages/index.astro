@@ -1,0 +1,29 @@
+---
+import { BaseLayout } from '../layouts/Base';
+import {
+    BmiCalcSection,
+    WhatIsBmiSection,
+    TipsSection,
+    LimitationsSection,
+    CurvedLines,
+} from './_sections';
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>BMI Calculator</title>
+    </head>
+    <body>
+        <BaseLayout>
+            <BmiCalcSection client:idle />
+            <WhatIsBmiSection />
+            <TipsSection />
+            <LimitationsSection />
+            <CurvedLines />
+        </BaseLayout>
+    </body>
+</html>
