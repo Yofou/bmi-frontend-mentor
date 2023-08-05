@@ -29,3 +29,25 @@ export const useGetBmiResult = () => {
 
     return HRNumbers.toHumanString(weight / heightInMetersSquared);
 };
+
+export const useGetBmiSuggestion = () => {
+    const bmiScore = useGetBmiResult();
+
+    if (bmiScore < 18.5) return 'Underweight';
+    if (bmiScore >= 18.5 && bmiScore < 25) return 'Healthy weight';
+    if (bmiScore >= 25 && bmiScore < 30) return 'Overweight';
+    return 'Obese';
+};
+
+export const useGetBmiIdealWeight = () => {
+  const height = useBmiStore(store => store.height)
+  const heightInMeters = height / 100;
+
+  const min = 18.5 * (heightInMeters * heightInMeters)
+  const max = 24.9 * (heightInMeters * heightInMeters)
+
+  return { 
+    min: Math.round((min + Number.EPSILON) * 100) / 100,
+    max: Math.round((max + Number.EPSILON) * 100) / 100 
+  }
+}

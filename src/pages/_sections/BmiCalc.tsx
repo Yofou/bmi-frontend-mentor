@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Input } from '../../components/Input';
 import { RadioGroup, RadioItem } from '../../components/Radio';
-import { useBmiStore, useGetBmiResult } from '../../stores/bmiModule';
+import { useBmiStore, useGetBmiIdealWeight, useGetBmiResult, useGetBmiSuggestion } from '../../stores/bmiModule';
 import {
     convertFeetToInches,
     convertHeightToImperial,
@@ -21,6 +21,8 @@ export const BmiForm = () => {
 
     const [isImperial, setIsImperial] = useState(false);
     const score = useGetBmiResult();
+    const suggestion = useGetBmiSuggestion()
+    const idealWeight = useGetBmiIdealWeight()
 
     const [heightByFt, setHeightByFt] = useState(0);
     const [heightByIn, setHeightByIn] = useState(0);
@@ -100,6 +102,7 @@ export const BmiForm = () => {
                         className="col-span-2 sm:col-span-1"
                         label="Weight"
                         value={weight}
+                        max={635}
                         setValue={setWeight}
                         unit="kg"
                     />
@@ -131,7 +134,7 @@ export const BmiForm = () => {
                             value={weightBySt}
                             setValue={setWeightBySt}
                             unit="st"
-                            max={272}
+                            max={100}
                         />
                         <Input
                             className="self-end"
@@ -165,10 +168,10 @@ export const BmiForm = () => {
                         </div>
 
                         <p className="self-center body-s">
-                            Your BMI suggests you’re a healthy weight. Your
+                            Your BMI suggests you’re a {suggestion}. Your
                             ideal weight is between{' '}
                             <span className="font-bold">
-                                63.3kgs - 85.2kgs.
+                              {idealWeight.min}kgs - {idealWeight.max}kgs.
                             </span>
                         </p>
                     </div>

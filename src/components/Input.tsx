@@ -28,6 +28,7 @@ export const Input: React.FC<InputProps> = (props) => {
           className="bg-[transparent] focus:outline-none w-full text-gunmetal heading-m [-moz-appearance:_textfield] [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
           type="number"
           max={props.max}
+          min={0}
           value={props.value}
           onChange={onChange}
         />
